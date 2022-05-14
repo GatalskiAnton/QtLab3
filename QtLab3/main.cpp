@@ -5,15 +5,15 @@
 int main(int argc, char* argv[])
 {
     QApplication a(argc, argv);
-    MainWidget w;
+   /* MainWidget w;
     w.resize(800, 700);
     w.setWindowTitle("Function Graph");
-    w.show();
+    w.show();*/
 
-    /*Widget wd;
+    Widget wd;
     wd.show();
     wd.resize(1000, 600);
-    wd.setWindowTitle("Hello!!!");*/
+    wd.setWindowTitle("Hello!!!");
 
     return a.exec();
 }
