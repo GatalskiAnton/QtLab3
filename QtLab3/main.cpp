@@ -11,8 +11,8 @@ int main(int argc, char* argv[])
     w.show();*/
 
     Widget wd;
-    wd.show();
     wd.resize(1000, 600);
+    wd.show();
     wd.setWindowTitle("Hello!!!");
 
     return a.exec();

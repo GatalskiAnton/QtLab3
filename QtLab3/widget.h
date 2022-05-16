@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QPushButton>
+#include <QSlider>
+#include <QColorDialog>
 
 class Widget : public QWidget
 {
@@ -12,17 +14,23 @@ class Widget : public QWidget
 
 public:
     Widget(QWidget* parent = nullptr);
-    ~Widget();
+    ~Widget() = default;
 
 protected:
-    void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
 protected slots:
+    void sliderMoved();
     void onClickedColorButton();
+    void onClickedSaveButton();
 private:
+    QColorDialog* dlg;
+    QPen pen;
     QPushButton* colorButton;
+    QPushButton* saveButton;
+    Widget* wGraphic;
+    QSlider* slider;
     std::vector<QPoint> current_line;
     std::vector<std::vector<QPoint>> lines;
 
