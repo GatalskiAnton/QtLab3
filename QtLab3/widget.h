@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QPushButton>
 #include <QSlider>
+#include <QFileDialog>
 #include <QColorDialog>
 
 class Widget : public QWidget
@@ -24,15 +25,23 @@ protected slots:
     void sliderMoved();
     void onClickedColorButton();
     void onClickedSaveButton();
+    void onClickedClearButton();
+    void onClickedOpenButton();
 private:
     QColorDialog* dlg;
     QPen pen;
     QPushButton* colorButton;
     QPushButton* saveButton;
+    QPushButton* clearButton;
+    QPushButton* openButton;
+
     Widget* wGraphic;
     QSlider* slider;
+    QFileDialog* fileDlg;
+    QPixmap pix;
     std::vector<QPoint> current_line;
     std::vector<std::vector<QPoint>> lines;
+    
 
 };
 #endif // WIDGET_H

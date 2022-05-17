@@ -8,19 +8,25 @@ Widget::Widget(QWidget* parent)
     dlg = new QColorDialog(this);
     colorButton = new QPushButton("Change color", this);
     saveButton = new QPushButton("Save", this);
+    clearButton = new QPushButton("Clear", this);
+    openButton = new QPushButton("Open", this);
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
+    mainLayout->setAlignment(Qt::AlignBottom);
     slider = new QSlider(Qt::Horizontal,this);
     slider->setMinimum(0);
     slider->setMaximum(20);
-    mainLayout->addWidget(colorButton);
     mainLayout->addWidget(slider);
+    mainLayout->addWidget(colorButton);
     mainLayout->addWidget(saveButton);
+    mainLayout->addWidget(openButton);
+    mainLayout->addWidget(clearButton);
     connect(colorButton, SIGNAL(clicked()), SLOT(onClickedColorButton()));
     connect(slider, SIGNAL(valueChanged(int)), SLOT(sliderMoved()));
     connect(saveButton, SIGNAL(clicked()), SLOT(onClickedSaveButton()));
+    connect(clearButton, SIGNAL(clicked()), SLOT(onClickedClearButton()));
+    connect(openButton, SIGNAL(clicked()), SLOT(onClickedOpenButton()));
+
 }
-
-
 
 void Widget::mouseMoveEvent(QMouseEvent* event)
 {
@@ -46,6 +52,7 @@ void Widget::paintEvent(QPaintEvent* event)
     
     QPainter painter(this);
     painter.setPen(pen);
+    painter.drawTiledPixmap(0, 0, width(), 0.7 * height(), pix);
     if (lines.empty() && current_line.empty())
         return;
 
@@ -65,20 +72,32 @@ void Widget::onClickedColorButton()
 
 void Widget::onClickedSaveButton()
 {
-    /*QString fileName("C:/example/customPlot.png");
-    QFile file(fileName);
-
-    if (!file.open(QIODevice::WriteOnly))
-    {
-
-    }
-    else 
-    {
-        
-    }*/
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save as"), "img.png");
+    int nIndex = fileName.lastIndexOf('.');
+    nIndex++;
+    int nLen = fileName.length() - nIndex;
+    QString strSuffix = fileName.right(nLen);
+   QPixmap pixmap = QPixmap::grabWidget(this, 0, 0, width(), 0.75* height());
+   pixmap.save(fileName, strSuffix.toUpper().toUtf8());
 }
 
 void Widget::sliderMoved()
 {
     pen.setWidth(slider->value());
+}
+
+void Widget::onClickedClearButton()
+{
+    lines.clear();
+    update();
+}
+
+void Widget::onClickedOpenButton()
+{
+    QString fileName = QFileDialog::getOpenFileName();
+    QImage img;
+    img.load(fileName);
+    pix = QPixmap::fromImage(img);
+    pix = pix.scaled(width(), 0.75 * height());
+    update();
 }

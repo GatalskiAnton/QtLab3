@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[4];
-    char stringdata0[41];
+    QByteArrayData data[7];
+    char stringdata0[102];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,15 @@ static const qt_meta_stringdata_Widget_t qt_meta_stringdata_Widget = {
 QT_MOC_LITERAL(0, 0, 6), // "Widget"
 QT_MOC_LITERAL(1, 7, 11), // "sliderMoved"
 QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 20) // "onClickedColorButton"
+QT_MOC_LITERAL(3, 20, 20), // "onClickedColorButton"
+QT_MOC_LITERAL(4, 41, 19), // "onClickedSaveButton"
+QT_MOC_LITERAL(5, 61, 20), // "onClickedClearButton"
+QT_MOC_LITERAL(6, 82, 19) // "onClickedOpenButton"
 
     },
-    "Widget\0sliderMoved\0\0onClickedColorButton"
+    "Widget\0sliderMoved\0\0onClickedColorButton\0"
+    "onClickedSaveButton\0onClickedClearButton\0"
+    "onClickedOpenButton"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +53,7 @@ static const uint qt_meta_data_Widget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,10 +61,16 @@ static const uint qt_meta_data_Widget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x09 /* Protected */,
-       3,    0,   25,    2, 0x09 /* Protected */,
+       1,    0,   39,    2, 0x09 /* Protected */,
+       3,    0,   40,    2, 0x09 /* Protected */,
+       4,    0,   41,    2, 0x09 /* Protected */,
+       5,    0,   42,    2, 0x09 /* Protected */,
+       6,    0,   43,    2, 0x09 /* Protected */,
 
  // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -74,6 +85,9 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->sliderMoved(); break;
         case 1: _t->onClickedColorButton(); break;
+        case 2: _t->onClickedSaveButton(); break;
+        case 3: _t->onClickedClearButton(); break;
+        case 4: _t->onClickedOpenButton(); break;
         default: ;
         }
     }
@@ -109,13 +123,13 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 5)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }
